@@ -32,7 +32,7 @@ import java.util.Scanner;
 			{
 				rollingADice();
 				Random random = new Random();
-				choice = random.nextInt(3)+1;
+				choice = random.nextInt(3)+1;  
 				System.out.println("Choice ="+choice);
 		        switch (choice)
 		        {
@@ -41,18 +41,18 @@ import java.util.Scanner;
 		        	  System.out.println("\nUpdated Player1 Position = "+position_of_player1);
 		        	  break;
 		        case ladder :
-		        	  position_of_player1= position_of_player1+diceoutput;
-		        	  System.out.println("\nUpdated Player1 Position = "+position_of_player1);
+		        	position_of_player1= position_of_player1+diceoutput;
+		        	  System.out.println("Updated Player1 Position = "+position_of_player1);
 		        	  if(position_of_player1==END_POSITION)
 		        	  {
 		        		  break;  
-		        	  }
+		        	   }
 		        	  else if(position_of_player1>END_POSITION)
 		        	  {
 		        		  position_of_player1= position_of_player1-diceoutput;
 		        	  }
-		        	  break; 
-		        case sneak : 
+		        	  break;
+		        case sneak :   
 		        	   position_of_player1= position_of_player1-diceoutput;
 		        		   if(position_of_player1<STARTING_POSITION) 
 		        		   {
