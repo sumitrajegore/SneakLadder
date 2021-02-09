@@ -3,6 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 	class Sumit {
 		final int STARTING_POSITION=0;
+		final int END_POSITION=100;
 		static int diceoutput;
 		static int position_of_player1;
 		static String Player1;
@@ -21,39 +22,57 @@ import java.util.Scanner;
 		}
 		void rollingADice()    // UC2 
 		{
-			Random random = new Random();
+			Random random = new Random(); 
 			diceoutput= random.nextInt(6)+1;
-		   System.out.println("\nrolls the die and get the number  = "+diceoutput);
+		   System.out.println("rolls the die and get the number  = "+diceoutput);
 		}
-		void checkForOption()    //UC3
+		void tillAPositionReached() 
 		{
-			Random random = new Random();
-			choice = random.nextInt(3)+1;
-			System.out.println("\nget option is ="+choice);
-	        switch (choice)
-	        {
-	        case noPlay : 
-	        	  System.out.println("\nNo play");
-	        	  System.out.println("\nPlayer1 Position = "+position_of_player1);
-	        	  break;
-	        case ladder :
-	        	  System.out.println("\nLadder, we will move ahead");
-	        	  System.out.println("\nPlayer1 Position = "+diceoutput);
-	        	  break;
-	        case sneak : 
-	        	   System.out.println("\nSneak, we will move backwards");
-	        	   System.out.println("\nPlayer1 Position = "+position_of_player1);
-	        	   break;
-	        }
-	    }
+			while(position_of_player1>=STARTING_POSITION && position_of_player1<END_POSITION)
+			{
+				rollingADice();
+				Random random = new Random();
+				choice = random.nextInt(3)+1;
+				System.out.println("Choice ="+choice);
+		        switch (choice)
+		        {
+		        case noPlay : 
+		        	  position_of_player1= position_of_player1+0;
+		        	  System.out.println("\nUpdated Player1 Position = "+position_of_player1);
+		        	  break;
+		        case ladder :
+		        	  position_of_player1= position_of_player1+diceoutput;
+		        	  System.out.println("\nUpdated Player1 Position = "+position_of_player1);
+		        	  if(position_of_player1==END_POSITION)
+		        	  {
+		        		  break;  
+		        	  }
+		        	  else if(position_of_player1>END_POSITION)
+		        	  {
+		        		  position_of_player1= position_of_player1-diceoutput;
+		        	  }
+		        	  break; 
+		        case sneak : 
+		        	   position_of_player1= position_of_player1-diceoutput;
+		        		   if(position_of_player1<STARTING_POSITION) 
+		        		   {
+		        			   position_of_player1=0; 
+		        		   }
+		        	   System.out.println("\nUpdated Player1 Position = "+position_of_player1);
+		         	   break;
+		        }	
+			}
+	}
 	}
 	public class SneakLadder {
     public static void main(String[] args) {
 		System.out.println("Welcome to the Sneak & Ladder program.");
 		Sumit obj1 = new Sumit();
 		obj1.initialization();
-		obj1.rollingADice();
-        obj1.checkForOption();
+		//obj1.rollingADice();
+        //obj1.checkForOption();
+		obj1.tillAPositionReached();
+
 
    }
 }
