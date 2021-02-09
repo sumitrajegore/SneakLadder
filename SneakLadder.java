@@ -11,6 +11,7 @@ import java.util.Scanner;
 		final int noPlay=1;
 		final int ladder=2;
 		final int sneak=3;
+		 int diceRollCount=0;
 		void initialization() // UC1
 		{
 			Scanner s= new Scanner(System.in);
@@ -25,6 +26,7 @@ import java.util.Scanner;
 			Random random = new Random(); 
 			diceoutput= random.nextInt(6)+1;
 		   System.out.println("rolls the die and get the number  = "+diceoutput);
+		   diceRollCount=diceRollCount+1;
 		}
 		void tillAPositionReached() 
 		{
@@ -61,6 +63,11 @@ import java.util.Scanner;
 		        	   System.out.println("\nUpdated Player1 Position = "+position_of_player1);
 		         	   break;
 		        }	
+			}
+			if(position_of_player1>=100)
+			{
+				System.out.println("\nWe reached final position so we got out of the loop.");
+				System.out.println("\nNumber of ties dice is rolled = "+diceRollCount);
 			}
 	}
 	}
